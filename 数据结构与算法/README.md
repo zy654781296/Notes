@@ -34,13 +34,23 @@
 
 ## 二.线性数据结构
 
-*  [数组](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/array/Array.java)
+*  [数组](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/array/Array.java)
  
-* [栈](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/stack)
+* [堆](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/heap)
+	* [大顶堆](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/heap/MaxHeap.java) 
+
+* [栈](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack)
+ 	* [基于数组的栈](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack/ArrayStack.java)
+	* [基于链表实现的栈](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack/LinkedListStack.java)
+
+* [队列](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue)
+	* [基于动态数组实现的队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/ArrayQueue.java)
+	* [基于链表实现的队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/LinkedListQueue.java) 
+	* [循环队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/LoopQueue.java)
+	* [优先队列（基于最大堆实现）](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/PriorityQueue.java)
+
  
-* [队列](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/queue)
- 
-* [链表](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LinkedList/LinkedList.java)
+* [链表](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/linkedlist/LinkedList.java)
  
 ## 三.树
 
@@ -81,25 +91,9 @@
 	* [基于RBTRee的映射](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/map/RBTMap.java) 
 
 * [并查集(Union-Find,数组实现)](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/unionfind/UnionFind6.java)
-
-## 五.堆、栈、队列
-
-* [堆](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/heap)
-	* [大顶堆](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/heap/MaxHeap.java) 
-
-
-* [栈](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack)
- 	* [基于数组的栈](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack/ArrayStack.java)
-	* [基于链表实现的栈](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/stack/LinkedListStack.java)
-
-* [队列](https://github.com/zy654781296/Notes/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue)
-	* [基于动态数组实现的队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/ArrayQueue.java)
-	* [基于链表实现的队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/LinkedListQueue.java) 
-	* [循环队列](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/LoopQueue.java)
-	* [优先队列（基于最大堆实现）](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/queue/PriorityQueue.java)
  
   
-## 六.图论
+## 五.图论
   动态规划
   
   KMP
