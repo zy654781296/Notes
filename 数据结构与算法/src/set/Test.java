@@ -1,5 +1,6 @@
 package set;
 
+import tree.rbtree.RBTree;
 import utils.FileOperation;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class Test {
         AVLSet<String> avlSet = new AVLSet<>();
         double time3 = testSet(avlSet, filename);
         System.out.println("AVL Set: " + time3 + " s");
+
+        RBTSet<String, Object> rbtSet = new RBTSet<>();
+        double time4 = testSet(rbtSet, filename);
+        System.out.println("RBT Set: " + time4 + " s");
 
         //testBSTSet();
 
