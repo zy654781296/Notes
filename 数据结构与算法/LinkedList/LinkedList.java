@@ -1,4 +1,4 @@
-package LinkedList;
+package linkedlist;
 
 /**
  * @author zhangy
@@ -14,17 +14,17 @@ public class LinkedList<E> {
 
     addLast:            O(n)
     addFirst:           O(1)
-    add:                O(n/2)=O(n)
+    add:                O(n/solution)=O(n)
 
     removeLast:         O(n)
     removeFirst:        O(1)
-    remove:             O(n/2)=O(n)
+    remove:             O(n/solution)=O(n)
 
     set:                O(n)
 
     getFirst:           O(1)
     getLast:            O(n)
-    get:                O(n/2)=O(n)
+    get:                O(n/solution)=O(n)
 
     contains:           O(n)
 

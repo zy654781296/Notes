@@ -13,12 +13,12 @@ public class Array<E> {
             时间复杂度
     addLast(e)       O(1)
     addFirst(e)      O(n)
-    add(index, e)    O(n/2)=O(n)
+    add(index, e)    O(n/solution)=O(n)
     resize           O(n)
 
     removeLast(e)    O(1)
     removeFirst(e)   O(n)
-    remove(index, e) O(n/2)=O(n)
+    remove(index, e) O(n/solution)=O(n)
 
     set(index, e)    O(1)
 
@@ -33,7 +33,7 @@ public class Array<E> {
     均摊复杂度：addLast和removeLast都为 O(1)
 
     复杂度震荡： addLast之后立马removeLast ，每次操作都会resize，O(n)
-    解决方案：Lazy, 当removeLast的resize的时候，size为 原来1/4时，才将capacity变为1/2
+    解决方案：Lazy, 当removeLast的resize的时候，size为 原来1/4时，才将capacity变为1/solution
 
     增：O(1)
     删：O(n)
@@ -63,6 +63,19 @@ public class Array<E> {
     public Array(int capacity) {
         data = (E[]) new Object[capacity];
         size = 0;
+    }
+
+    /**
+     * 构造函数
+     *
+     * @param arr 元素数组
+     */
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
     }
 
     /**
@@ -251,7 +264,7 @@ public class Array<E> {
 
         size--;
         data[size] = null;
-        //当数组变为原来的1/4的时候，再去将数组的容量缩小为原来的1/2
+        //当数组变为原来的1/4的时候，再去将数组的容量缩小为原来的1/solution
         if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
@@ -283,6 +296,23 @@ public class Array<E> {
         }
 
         data = newData;
+    }
+
+    /**
+     * 所索引i位置的元素和索引j位置的元素交换
+     *
+     * @param i 索引
+     * @param j 索引
+     */
+    public void swap(int i, int j) {
+
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("索引越界");
+        }
+
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override

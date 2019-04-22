@@ -1,6 +1,6 @@
 package stack;
 
-import LinkedList.LinkedList;
+import linkedlist.LinkedList;
 
 /**
  * @author zhangy
