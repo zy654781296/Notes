@@ -14,21 +14,23 @@
 
 ## 一.八大内部排序
 
- 冒泡排序
+[八大内部排序](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/md/%E5%85%AB%E5%A4%A7%E5%86%85%E9%83%A8%E6%8E%92%E5%BA%8F.md)
+
+* [冒泡排序](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/sort/BubbleSort.java)
  
- 选择排序
+* [选择排序](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/sort/SelectSort.java)
  
- 堆排序
+* 堆排序
  
- 快速排序
+* 快速排序
  
- 希尔排序
+* 希尔排序
  
- 归并排序
+* 归并排序
  
- 插入排序
+* [插入排序](https://github.com/zy654781296/Notes/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/src/sort/InsertSort.java)
  
- 链式基数排序
+* 链式基数排序
  
  
 
