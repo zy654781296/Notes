@@ -1,13 +1,13 @@
 # 性能优化
 
 ## 启动优化
-    
+
 * APP启动过程
     * 1.打开电源   引导芯片代码加载引导程序Boot Loader到RAM中去执行
     * 2.BootLoader把操作系统拉起来
     * 3.Linux内核启动开始系统设置，找到init.rc文件启动初始化进程(init进程，pid为1)
     * 4.init进程初始化和启动属性服务，之后开启Zygote进程(孵化进程)
-    * 5.Zygote开始创建JVM(以上过程都是C++)并开始SystemServer 
+    * 5.Zygote开始创建JVM(以上过程都是C++)并开启SystemServer 
     * 6.启动Binder线程池和SystemServerManager启动各种服务(ActivityMangerService、WindowManagerSevice、PacjageManagerService、CameraService.......)
     * 7.AMS启动Launcher
     * 8.当我们点击图标，进入到public final class Launcher extends Activity，执行onClick(View view)方法，会把这个应用的相关信息传入，先获取一个intent-->startActivtySafe(v,intent,tag)-->startActivity(v,intent,tag)-->startActivity(intent);
@@ -118,7 +118,7 @@ void windowsDrawnLocked()-->reportLaunchTimeLocked(SystemClock.uptimeMillis())�
 
 ## 内存优化
 
-* Java虚拟机
+### Java虚拟机
 ![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190428171148.png)
 ![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190428171309.png)
 ![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190428172042.png)
@@ -159,3 +159,132 @@ void windowsDrawnLocked()-->reportLaunchTimeLocked(SystemClock.uptimeMillis())�
 	* 内存泄露的原因：一个长声明周期的对象持有一个短生门周期对象的引用。
 			
 
+* 分析内存的常用工具
+	* meinfo；procstats；DDMS；MAT；Finder-Activity；LeakCanary；LeakInspector；top/procrank 
+
+	
+	
+* 内存抖动(内存频繁的分配和回收，分配速度大于回收速度)最终会OOM	
+* Java中常用的回收算法
+	* 标记-清除算法(Mark-Sweep)
+   ![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190430135219.png)
+   最基础的垃圾收集算法，算法分为“标记”和“清除”两个阶段：首先标	记出所有需要回收的对象，在标记完成之后统一回收掉所有被标记的	对象。标记-清除算法的缺点有两个：首先，效率问题，标记和清除	效率都不高。其次，标记清除之后会产生大量的不连续的内存碎片，	空间碎片太多会导致当程序需要为较大对象分配内存时无法找到足够	的连续内存而不得不提前触发另一次垃圾收集动作。
+	
+	* 复制算法(Capying)
+![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190430135503.png)
+	将可用内存按容量分成大小相等的两块，每次只使用其中一块，当这块内存使用完了，就将还存活的对象复制到另一块内存上去，然后把使用过的内存空间一次清理掉。这样使得每次都是对其中一块内存进行回收，内存分配时不用考虑内存碎片等复杂情况，只需要移动堆顶指针，按顺序分配内存即可，实现简单，运行高效。复制算法的缺点显而易见，可使用的**内存降为原来一半**。
+
+	* 标记压缩算法(Mark-Compact)
+![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190430135849.png)
+	标记-整理算法在标记-清除算法基础上做了改进，标记阶段是相同的标记出所有需要回收的对象，在标记完成之后不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，在移动过程中清理掉可回收的对象，这个过程叫做整理。
+
+		标记-整理算法相比标记-清除算法的优点是内存被整理以后不会产生大量不连续内存碎片问题。
+
+		复制算法在对象存活率高的情况下就要执行较多的复制操作，效率将会变低，而在对象存活率高的情况下使用标记-整理算法效率会大大提高。
+	
+	* 分代收集算法 
+	
+	![Image text](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190430140525.png)
+	![Image text ](https://raw.githubusercontent.com/zy654781296/Notes/master/images/20190430140729.png)
+	
+	根据内存中对象的存活周期不同，将内存划分为几块，java的虚拟机中一般把内存划分为新生代和年老代，当新创建对象时一般在新生代中分配内存空间，当新生代垃圾收集器回收几次之后仍然存活的对象会被移动到年老代内存中，当大对象在新生代中无法找到足够的连续内存时也直接在年老代中创建。
+	
+	Serial串行收集器</br>
+	ParNew收集器</br>
+	Parallel Scavenge收集器</br>
+	Serial Old收集器</br>
+	Parallel Old收集器</br>
+		
+### 优化内存的方式
+1.数据类型
+
+ * 不用使用比需求更占用空间的基本数据类型，比如整型的时候用int，不用long或者double
+
+
+2.循环尽量用for-index，少用iterator，自动装箱尽量少用
+ 
+ * 有3种循环方式
+ 	* Iterator
+ 	
+ 	``` Java 
+ 	for (Iterator it = list.iterator(); it.hasNext();){
+ 		Object o = it.next();
+ 		...
+ 	}
+ 	```
+ 	
+ 	* for-Index
+
+ 	``` Java 
+ 	for(int index = 0; index < 100; index++){
+ 		...
+ 	}
+ 	```
+ 	* Simplified  
+
+ 	``` Java 
+ 	for(Object o : list) {
+ 		...
+ 	}
+	```
+
+3.数据结构与算法的解度处理
+	
+  * 数据量在千级以下的 用SparseArray，ArrayMap 
+
+4.枚举优化
+
+``` Java
+public class WEEK {
+
+    public static final int MONDAY = 1;
+    public static final int TUESDAY = 2;
+    public static final int WEDNESDAY = 3;
+    public static final int THURSDAY = 4;
+    public static final int FRIDAY = 5;
+    public static final int SATURDAY = 6;
+    public static final int SUNDAY = 7;
+
+    @Documented
+    @IntDef(flag = true, value = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY})
+    @Target({ElementType.PARAMETER,ElementType.METHOD,ElementType.FIELD})
+    @Retention(RetentionPolicy.SOURCE)
+
+    public @interface Model{
+
+    }
+
+    private @Model int value = MONDAY;
+    public void setWeek(@Model int value) {
+        this.value = value;
+    }
+
+    public @Model int getWeek() {
+        return this.value;
+    }
+
+}
+``` 
+
+5.尽量使用static final
+
+  * static会由编译器调用clinit方法进行初始化
+  * static final不需要进行初始化工作，打包在dex文件中可以直接调用，并不会在类初始化申请内存所以基本数据类型的成员，可以全写成static final 
+
+6.字符串的链接尽量少用+拼接
+
+7.重复申请内存的问题
+
+  * 同一个方法多次调用，如递归函数 ，回调函数中new对象,读流直接在循环中new对象等不要在onMeause()  onLayout() onDraw()  中去刷新UI（requestLayout）
+  
+8.避免GC回收将来用重用的对象
+
+ * 内存设计模式对象池+LRU算法
+
+9.Activity组件泄露
+
+10.尽量使用IntentService，少用Service
+	
+	
+	
+	
