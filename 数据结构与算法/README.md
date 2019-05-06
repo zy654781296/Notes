@@ -11,6 +11,11 @@
 
 >目录
 
+时间复杂度：
+![Image text](https://github.com/zy654781296/Notes/blob/master/images/timeO.png?raw=true)
+常用数据结构的时间复杂度:
+![](https://github.com/zy654781296/Notes/blob/master/images/CommonData%20StructureO.png?raw=true)
+
 
 ## 一.八大内部排序
 
